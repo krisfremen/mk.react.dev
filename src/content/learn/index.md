@@ -19,11 +19,11 @@ title: Брз почеток
 
 </YouWillLearn>
 
-## Creating and nesting components {/*components*/}
+## Создавање и вгнездување компоненти {/*components*/}
 
-React apps are made out of *components*. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
+React апликациите се состојат од *компоненти*. Компонентата е дел од корисничкиот интерфејс (UI) што има своја логика и изглед. Компонентата може да биде мала како копче, или голема како цела страница.
 
-React components are JavaScript functions that return markup:
+React компонентите се JavaScript функции што враќаат маркап:
 
 ```js
 function MyButton() {
@@ -75,24 +75,24 @@ export default function MyApp() {
 
 Клучните зборови "export default" ја одредуваат главната компонента во фајлот. Ако не сте запознаени со некои делови од синтаксата на JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) и [javascript.info](https://javascript.info/import-export) имаат одлични референци.
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## Пишување на маркап со JSX {/*writing-markup-with-jsx*/}
 
-The markup syntax you've seen above is called *JSX*. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
+Синтаксата на маркапот што сте ја виделе погоре се нарекува *JSX*. Таа е опционална, но повеќето React проекти ја користат JSX поради нејзината удобност. Сите [алати што ги препорачуваме за локална развојна средина](/learn/installation) ги поддржуваат JSX без потреба од дополнителна конфигурација.
 
-JSX is stricter than HTML. You have to close tags like `<br />`. Your component also can't return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
+JSX е построг од HTML. Потребно е да ги затворите таговите, како на пример `<br />`. Вашата компонента исто така не може да врати повеќе JSX тагови. Потребно е да ги обвиете во заеднички родител, како на пример `<div>...</div>` или празен `<>...</>` обвивач:
 
 ```js {3,6}
 function AboutPage() {
   return (
     <>
-      <h1>About</h1>
-      <p>Hello there.<br />How do you do?</p>
+      <h1>За нас</h1>
+      <p>Здраво тамо.<br />Како сте?</p>
     </>
   );
 }
 ```
 
-If you have a lot of HTML to port to JSX, you can use an [online converter.](https://transform.tools/html-to-jsx)
+Ако имате многу HTML што треба да го конвертирате во JSX, можете да користите [онлајн конвертор.](https://transform.tools/html-to-jsx)
 
 ## Додавање стилови {/*adding-styles*/}
 
@@ -179,9 +179,9 @@ export default function Profile() {
 
 Во горниот пример, `style={{}}` не е специјална синтакса, туку обичен објект `{}` во `style={ }` JSX кадравите заградите. Можете да го користите атрибутот "style" кога вашите стилови зависат од JavaScript варијабилите.
 
-## Conditional rendering {/*conditional-rendering*/}
+## Условно рендерирање {/*conditional-rendering*/}
 
-In React, there is no special syntax for writing conditions. Instead, you'll use the same techniques as you use when writing regular JavaScript code. For example, you can use an [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement to conditionally include JSX:
+Во React, нема специјална синтакса за пишување услови. Наместо тоа, се користат истите техники како и при пишувањето редовен JavaScript код. На пример, можете да користите [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) услов за условно вклучување на JSX:
 
 ```js
 let content;
@@ -197,7 +197,7 @@ return (
 );
 ```
 
-If you prefer more compact code, you can use the [conditional `?` operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) Unlike `if`, it works inside JSX:
+Ако преферирате по-компактно кодирање, можете да го користите [условниот оператор `?`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator). За разлика од `if`, тој работи внатре во JSX:
 
 ```js
 <div>
@@ -209,7 +209,7 @@ If you prefer more compact code, you can use the [conditional `?` operator.](htt
 </div>
 ```
 
-When you don't need the `else` branch, you can also use a shorter [logical `&&` syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
+Кога не ви е потребен `else` гранката, можете исто така да користите пократка [логичка `&&` синтакса](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
 
 ```js
 <div>
@@ -217,13 +217,13 @@ When you don't need the `else` branch, you can also use a shorter [logical `&&` 
 </div>
 ```
 
-All of these approaches also work for conditionally specifying attributes. If you're unfamiliar with some of this JavaScript syntax, you can start by always using `if...else`.
+Сите овие пристапи исто така функционираат за условно определување на атрибути. Ако не сте запознаени со некои од овие JavaScript синтакси, можете да започнете секогаш со користење на `if...else`.
 
-## Rendering lists {/*rendering-lists*/}
+## Рендерирање на листи {/*rendering-lists*/}
 
-You will rely on JavaScript features like [`for` loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) and the [array `map()` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to render lists of components.
+Ќе се потпрете на JavaScript функции како што се [`for` циклус](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) и [функцијата `map()` на низи](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) за рендерирање на листи од компоненти.
 
-For example, let's say you have an array of products:
+На пример, да речеме дека имате низата на производи:
 
 ```js
 const products = [
@@ -233,7 +233,7 @@ const products = [
 ];
 ```
 
-Inside your component, use the `map()` function to transform an array of products into an array of `<li>` items:
+Внатре во вашата компонента, користете ја функцијата `map()` за да ја трансформирате низата на производи во низа од `<li>` елементи:
 
 ```js
 const listItems = products.map(product =>
@@ -247,7 +247,7 @@ return (
 );
 ```
 
-Notice how `<li>` has a `key` attribute. For each item in a list, you should pass a string or a number that uniquely identifies that item among its siblings. Usually, a key should be coming from your data, such as a database ID. React uses your keys to know what happened if you later insert, delete, or reorder the items.
+Обратите внимание на тоа како `<li>` има атрибут `key`. За секој елемент во листата, треба да дадете израз или број што уникатно го идентификува тој елемент меѓу неговите соседи. Обично, клучот треба да доаѓа од вашите податоци, како што е ID од база на податоци. React ги користи вашите клучеви за да знае што се случило ако подоцна вметнете, избришете или пренаредите елементите.
 
 <Sandpack>
 
