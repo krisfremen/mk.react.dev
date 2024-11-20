@@ -278,37 +278,37 @@ export default function ShoppingList() {
 
 </Sandpack>
 
-## Responding to events {/*responding-to-events*/}
+## Реагирање на настани {/*responding-to-events*/}
 
-You can respond to events by declaring *event handler* functions inside your components:
+Можете да реагирате на настани со декларирање на *функции за обработка на настани* внатре во вашите компоненти:
 
 ```js {2-4,7}
 function MyButton() {
   function handleClick() {
-    alert('You clicked me!');
+    alert('Сте кликнале на мене!');
   }
 
   return (
     <button onClick={handleClick}>
-      Click me
+      Кликнете на мене
     </button>
   );
 }
 ```
 
-Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ the event handler function: you only need to *pass it down*. React will call your event handler when the user clicks the button.
+Обратите внимание на тоа како `onClick={handleClick}` нема загради на крајот! Не _викајте_ ја функцијата за обработка на настани: само треба да ја *пренесете*. React ќе ја повика вашата функција за обработка на настани кога корисникот ќе кликне на копчето.
 
-## Updating the screen {/*updating-the-screen*/}
+## Ажурирање на екранот {/*updating-the-screen*/}
 
-Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
+Често, ќе сакате вашата компонента да "запомни" некои информации и да ги прикаже. На пример, можеби сакате да ја броите бројката на кликнувања на копчето. За да го направите ова, додадете *статус(state)* на вашата компонента.
 
-First, import [`useState`](/reference/react/useState) from React:
+Прво, увезете [`useState`](/reference/react/useState) од React:
 
 ```js
 import { useState } from 'react';
 ```
 
-Now you can declare a *state variable* inside your component:
+Сега можете да декларирате *променливата за статус(state)* во внатрешностра на вашата компонента:
 
 ```js
 function MyButton() {
@@ -316,11 +316,11 @@ function MyButton() {
   // ...
 ```
 
-You’ll get two things from `useState`: the current state (`count`), and the function that lets you update it (`setCount`). You can give them any names, but the convention is to write `[something, setSomething]`.
+Ќе добиете две работи од `useState`: актуелниот статус (`count`), и функцијата што ви овозможува да го ажурирате (`setCount`). Можете да им дадете било какви имиња, но конвенцијата е да пишувате `[something, setSomething]`.
 
-The first time the button is displayed, `count` will be `0` because you passed `0` to `useState()`. When you want to change state, call `setCount()` and pass the new value to it. Clicking this button will increment the counter:
+При првото прикажување на копчето, `count` ќе биде `0` бидејќи му испративте `0` на `useState()`. Кога сакате да го промените статусот, повикајте ја `setCount()` и пренесете ја новата вредност. Кликнувањето на ова копче ќе го зголеми бројачот:
 
-```js {5}
+```js
 function MyButton() {
   const [count, setCount] = useState(0);
 
@@ -330,15 +330,15 @@ function MyButton() {
 
   return (
     <button onClick={handleClick}>
-      Clicked {count} times
+      Кликнато {count} пати
     </button>
   );
 }
 ```
 
-React will call your component function again. This time, `count` will be `1`. Then it will be `2`. And so on.
+React повторно ќе ја повика вашата функција за компонентата. Овој пат, `count` ќе биде `1`. Потоа ќе биде `2`. И така натаму.
 
-If you render the same component multiple times, each will get its own state. Click each button separately:
+Ако ја рендерирате истата компонента повеќе пати, секоја ќе има свој статус. Кликнете на секое копче одделно:
 
 <Sandpack>
 
@@ -348,7 +348,7 @@ import { useState } from 'react';
 export default function MyApp() {
   return (
     <div>
-      <h1>Counters that update separately</h1>
+      <h1>Бројачи што се ажурираат одделно</h1>
       <MyButton />
       <MyButton />
     </div>
@@ -364,7 +364,7 @@ function MyButton() {
 
   return (
     <button onClick={handleClick}>
-      Clicked {count} times
+      Кликнато {count} пати
     </button>
   );
 }
@@ -379,59 +379,59 @@ button {
 
 </Sandpack>
 
-Notice how each button "remembers" its own `count` state and doesn't affect other buttons.
+Обратите внимание на тоа како секое копче "запомнува" својот `count` статус и не влијае на другите копчиња.
 
-## Using Hooks {/*using-hooks*/}
+## Користење на Хуци {/*using-hooks*/}
 
-Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [API reference.](/reference/react) You can also write your own Hooks by combining the existing ones.
+Функциите што почнуваат со `use` се нарекуваат *Хуци*. `useState` е вградена функција (Hook) што ја нуди React. Можете да најдете други вградени Хуци во [API референцата.](/reference/react) Исто така, можете да напишете свои Хуци со комбинирање на постоечките.
 
-Hooks are more restrictive than other functions. You can only call Hooks *at the top* of your components (or other Hooks). If you want to use `useState` in a condition or a loop, extract a new component and put it there.
+Хуците се по рестриктивни од другите функции. Можете да повикате Хуци *само на врвот* на вашите компоненти (или другите Хуци). Ако сакате да користите `useState` во услов или циклус, извлечете нова компонента и ставете ја таму.
 
-## Sharing data between components {/*sharing-data-between-components*/}
+## Споделување податоци помеѓу компоненти {/*sharing-data-between-components*/}
 
-In the previous example, each `MyButton` had its own independent `count`, and when each button was clicked, only the `count` for the button clicked changed:
+Во претходниот пример, секој `MyButton` имаше свој независен `count`, и кога секое копче беше кликнато, само `count` за кликнатото копче се смени:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_child" height={367} width={407} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton components contain a count with value zero.">
-
-Initially, each `MyButton`'s `count` state is `0`
+<Diagram name="sharing_data_child" height={367} width={407} alt="Дијаграм што прикажува дрво од три компоненти, еден родител обележан како MyApp и два деца обележани како MyButton. И двете компоненти MyButton содржат count со вредност нула.">
+ 
+Првично, секоја `MyButton`'s `count` статус е `0`
 
 </Diagram>
 
-<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="The same diagram as the previous, with the count of the first child MyButton component highlighted indicating a click with the count value incremented to one. The second MyButton component still contains value zero." >
+<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="Истиот дијаграм како претходниот, со истакнат count на првата компонента MyButton што укажува на клик со вредноста на count зголемена на еден. Втората компонента MyButton сè уште содржи вредност нула.">
 
-The first `MyButton` updates its `count` to `1`
+Првата `MyButton` го ажурира својот `count` на `1`
 
 </Diagram>
 
 </DiagramGroup>
 
-However, often you'll need components to *share data and always update together*.
+Сепак, често ќе биде потребно компонентите да *споделуваат податоци и секогаш да се ажурираат заедно*.
 
-To make both `MyButton` components display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them.
+За да направите и двете компонентов `MyButton` да прикажуваат истиот `count` и да се ажурираат заедно, треба да го преместите статусот од поединечните копчиња "повисоко" до најблиската компонента што ги содржи сите нив.
 
-In this example, it is `MyApp`:
+Во овој пример, тоа е `MyApp`:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_parent" height={385} width={410} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. MyApp contains a count value of zero which is passed down to both of the MyButton components, which also show value zero." >
+<Diagram name="sharing_data_parent" height={385} width={410} alt="Дијаграм што прикажува дрво од три компоненти, еден родител обележан како MyApp и два деца обележани како MyButton. MyApp содржи вредност на count нула што се пренесува до двете компоненти MyButton, кои исто така покажуваат вредност нула.">
 
-Initially, `MyApp`'s `count` state is `0` and is passed down to both children
+Првично, статусот на `MyApp` е `0` и се пренесува до двата деца
 
 </Diagram>
 
-<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="The same diagram as the previous, with the count of the parent MyApp component highlighted indicating a click with the value incremented to one. The flow to both of the children MyButton components is also highlighted, and the count value in each child is set to one indicating the value was passed down." >
+<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="Истиот дијаграм како претходниот, со истакнат count на родителот MyApp што укажува на клик со вредноста зголемена на еден. Текот до двете деца MyButton е исто така истакнат, а вредноста на count во секое дете е поставена на еден, што укажува на тоа дека вредноста е пренесена.">
 
-On click, `MyApp` updates its `count` state to `1` and passes it down to both children
+При клик, `MyApp` го ажурира својот статус на `count` на `1` и го пренесува до двете деца
 
 </Diagram>
 
 </DiagramGroup>
 
-Now when you click either button, the `count` in `MyApp` will change, which will change both of the counts in `MyButton`. Here's how you can express this in code.
+Сега, кога ќе кликнете на било кое копче, `count` во `MyApp` ќе се промени, што ќе ги промени и двата `count` во `MyButton`. Еве како можете да го изразите тоа во код.
 
-First, *move the state up* from `MyButton` into `MyApp`:
+Прво, *преместете го статусот* од `MyButton` во `MyApp`:
 
 ```js {2-6,18}
 export default function MyApp() {
@@ -443,7 +443,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update separately</h1>
+      <h1>Бројачи што се ажурираат одделно</h1>
       <MyButton />
       <MyButton />
     </div>
@@ -451,12 +451,11 @@ export default function MyApp() {
 }
 
 function MyButton() {
-  // ... we're moving code from here ...
+  // ... преместуваме код од тука ...
 }
-
 ```
 
-Then, *pass the state down* from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
+Потоа, *пренесете го статусот* од `MyApp` до секој `MyButton`, заедно со споделената функција за обработка на кликови. Можете да пренесете информации до `MyButton` користејќи ги фигурните загради на JSX, исто како што го правевте претходно со вградените тагови како `<img>`:
 
 ```js {11-12}
 export default function MyApp() {
@@ -468,7 +467,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update together</h1>
+      <h1>Бројачи што се ажурираат заедно</h1>
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
     </div>
@@ -476,21 +475,21 @@ export default function MyApp() {
 }
 ```
 
-The information you pass down like this is called _props_. Now the `MyApp` component contains the `count` state and the `handleClick` event handler, and *passes both of them down as props* to each of the buttons.
+Информацијата што ја пренесувате на овој начин се нарекува _props_. Сега компонентата `MyApp` содржи статус на `count` и функцијата за обработка на кликови `handleClick`, и *ги пренесува и двете како props* до секое од копчињата.
 
-Finally, change `MyButton` to *read* the props you have passed from its parent component:
+На крајот, променете ја `MyButton` за да *прочита* props што ги пренесовте од нејзиниот родител:
 
 ```js {1,3}
 function MyButton({ count, onClick }) {
   return (
     <button onClick={onClick}>
-      Clicked {count} times
+      Кликнато {count} пати
     </button>
   );
 }
 ```
 
-When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as a prop to each button, so they all show the new value. This is called "lifting state up". By moving state up, you've shared it between components.
+Кога ќе кликнете на копчето, функцијата за обработка на `onClick` ќе се активира. `onClick` проп на секое копче беше поставен на функцијата `handleClick` внатре во `MyApp`, па кодот во неа се извршува. Тоа код повикува `setCount(count + 1)`, зголемувајќи ја променливата за статус `count`. Новата вредност на `count` се пренесува како проп до секое копче, така што сите прикажуваат нова вредност. Ова се нарекува "подигање на статусот". Со преместување на статусот нагоре, го споделивте помеѓу компонентите.
 
 <Sandpack>
 
@@ -506,7 +505,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update together</h1>
+      <h1>Бројачи што се ажурираат заедно</h1>
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
     </div>
@@ -516,7 +515,7 @@ export default function MyApp() {
 function MyButton({ count, onClick }) {
   return (
     <button onClick={onClick}>
-      Clicked {count} times
+      Кликнато {count} пати
     </button>
   );
 }
@@ -529,10 +528,8 @@ button {
 }
 ```
 
-</Sandpack>
+## Следни чекори {/*next-steps*/}
 
-## Next Steps {/*next-steps*/}
+Сега, веќе ги знаете основите на тоа како да пишувате React код!
 
-By now, you know the basics of how to write React code!
-
-Check out the [Tutorial](/learn/tutorial-tic-tac-toe) to put them into practice and build your first mini-app with React.
+Погледнете го [Училиштето](/learn/tutorial-tic-tac-toe) за да ги примените и да изградите ваша прва мини-апликација со React.
